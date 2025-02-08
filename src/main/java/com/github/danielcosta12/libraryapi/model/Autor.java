@@ -1,15 +1,15 @@
 package com.github.danielcosta12.libraryapi.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 @Entity
 @Table(name = "autor", schema = "public")
-@Getter
-@Setter
+@Data
 public class Autor {
    @Id
    @Column(name = "id")
@@ -25,4 +25,7 @@ public class Autor {
    @Column(name = "nacionalidade", length = 50, nullable = false)
    private String nacionalidade;
 
+
+   @OneToMany(mappedBy = "autor") //um autor para muitos livros
+   private List<Livro> livros;
 }
