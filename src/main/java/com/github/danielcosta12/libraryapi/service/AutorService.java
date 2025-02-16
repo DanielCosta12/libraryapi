@@ -20,4 +20,7 @@ public class AutorService {
    public Optional<Autor> obterPorId(UUID id){
         return repository.findById(id);
    }
+   public void deletar(Autor autor){
+        repository.delete(autor);
+   }
 }
