@@ -2,14 +2,16 @@ package com.github.danielcosta12.libraryapi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 @Entity
-@Table(name = "autor", schema = "public")
 @Data
+@ToString
+@Table(name = "autor", schema = "public")
 public class Autor {
    @Id
    @Column(name = "id")
@@ -26,6 +28,7 @@ public class Autor {
    private String nacionalidade;
 
 
-   @OneToMany(mappedBy = "autor") //um autor para muitos livros
+   @OneToMany(mappedBy = "autor") //, cascade = CascadeType.ALL) //um autor para muitos livros
+   //@Transient
    private List<Livro> livros;
 }
