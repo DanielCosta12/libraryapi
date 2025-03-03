@@ -21,6 +21,12 @@ public class AutorService {
    public Autor salvar(Autor autor){
         return repository.save(autor);
    }
+    public void atualizar(Autor autor){
+        if (autor.getId() == null){
+            throw new IllegalArgumentException("É necessario que o autor já seja cadastrado");
+        }
+      repository.save(autor);
+    }
    public Optional<Autor> obterPorId(UUID id){
         return repository.findById(id);
    }
