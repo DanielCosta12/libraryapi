@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface AutorRepository extends JpaRepository<Autor, UUID> {
@@ -13,5 +15,7 @@ public interface AutorRepository extends JpaRepository<Autor, UUID> {
             "(:nome IS NULL OR a.nome LIKE %:nome%) AND " +
             "(:nacionalidade IS NULL OR a.nacionalidade LIKE %:nacionalidade%)")
     List<Autor> pesquisar(@Param("nome") String nome, @Param("nacionalidade") String nacionalidade);
-
+    Optional<Autor> findByNomeAndDataNascimentoAndNacionalidade(
+            String nome, LocalDate dataNascimento, String nacionalidade
+    );
 }
